@@ -28,7 +28,7 @@ public class HomeWorkApp {
 
             case 5:
                 int len = 10;
-                int initialValue=5;
+                int initialValue = 5;
                 System.out.println(Arrays.toString(fillArr(len, initialValue)));
                 start();
 
@@ -36,14 +36,17 @@ public class HomeWorkApp {
                 findMinMax();
 
             case 7:
-                int[] mas=new int[]{2,2,2,4,4,6};
+                int[] mas = new int[]{2, 2, 2, 4, 4, 6};
                 System.out.print(checkBalance(mas));
                 start();
 
             case 8:
-                int[] mass=new int[]{1,3,5,7,9,11,13};
-                int n=-4;
-                System.out.println(Arrays.toString(shift(mass, n)));
+                int[] mas8 =new int[] {1, 3, 5, 7,9,11,13};
+                int n = -3;
+                System.out.println("До: \n"+Arrays.toString(mas8));
+                shift(mas8, n);
+
+                System.out.println("После: \n"+Arrays.toString(mas8)+"\nсдвиг на "+n);
                 start();
 
             default:
@@ -52,39 +55,40 @@ public class HomeWorkApp {
         in.close();
     }
 
-    public static void change01(){
-        byte[] mas = new byte[]{0,1,1,0,0,1,1,0,1,0};
+    public static void change01() {
+        byte[] mas = new byte[]{0, 1, 1, 0, 0, 1, 1, 0, 1, 0};
 
         System.out.println("Исходный массив:");
-        for (int i =0; i<mas.length;i++)
-        {System.out.print(mas[i]);}
+        for (int i = 0; i < mas.length; i++) {
+            System.out.print(mas[i]);
+        }
 
-        for (int i =0; i<mas.length;i++)
-        {
-            if(mas[i]==1) {
-                mas[i]=0;
+        for (int i = 0; i < mas.length; i++) {
+            if (mas[i] == 1) {
+                mas[i] = 0;
+            } else {
+                mas[i] = 1;
             }
-            else {mas[i]=1;}
         }
 
         System.out.println("\nНовый массив:");
-        for (int i =0; i<mas.length;i++){
-        System.out.print(mas[i]);}
+        for (int i = 0; i < mas.length; i++) {
+            System.out.print(mas[i]);
+        }
 
         start();
     }
 
-    public static void newArray100(){
+    public static void newArray100() {
         byte[] mas = new byte[100];
-        for (byte i=0;i<100;i++)
-        {
-            mas[i]= (byte) (i+1);
-            System.out.print(mas[i]+" ");
+        for (byte i = 0; i < 100; i++) {
+            mas[i] = (byte) (i + 1);
+            System.out.print(mas[i] + " ");
         }
         start();
     }
 
-    public static void X6(){
+    public static void X6() {
         int[] mas = new int[]{1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
 
         System.out.println("Исходный массив:");
@@ -93,81 +97,77 @@ public class HomeWorkApp {
         }
 
         System.out.println("\nНовый массив:");
-        for (int i =0; i<mas.length;i++){
-            if(mas[i]<6){
-                mas[i]*=2;
+        for (int i = 0; i < mas.length; i++) {
+            if (mas[i] < 6) {
+                mas[i] *= 2;
             }
-            System.out.print(mas[i]+" ");
+            System.out.print(mas[i] + " ");
         }
         start();
     }
 
-    public static void squareArr(){
+    public static void squareArr() {
         byte r = 10;
-        int[][] mas= new int[r][r];
-        for (int i=0;i<r;i++){
-            mas[i][r-1-i]=1;
-            mas[i][i]=1;
-            for (int j=0;j<r;j++){
-                System.out.print(mas[i][j]+" ");
+        int[][] mas = new int[r][r];
+        for (int i = 0; i < r; i++) {
+            mas[i][r - 1 - i] = 1;
+            mas[i][i] = 1;
+            for (int j = 0; j < r; j++) {
+                System.out.print(mas[i][j] + " ");
             }
             System.out.println();
         }
         start();
     }
 
-    public static int[] fillArr(int len, int initialValue){
+    public static int[] fillArr(int len, int initialValue) {
         int[] mas = new int[len];
-        for (int i=0; i<len;i++)
-        {
-            mas[i]=initialValue;
+        for (int i = 0; i < len; i++) {
+            mas[i] = initialValue;
         }
         return mas;
     }
 
-    public static void findMinMax(){
-        int[] mas = new int[]{1,7,5,3,6,8,9,6,4,3};
-        OptionalInt min= Arrays.stream(mas).min();
-        OptionalInt max= Arrays.stream(mas).max();
-        System.out.println("Минимум: "+min+"\nМаксимум: "+max);
+    public static void findMinMax() {
+        int[] mas = new int[]{1, 7, 5, 3, 6, 8, 9, 6, 4, 3};
+        OptionalInt min = Arrays.stream(mas).min();
+        OptionalInt max = Arrays.stream(mas).max();
+        System.out.println("Минимум: " + min + "\nМаксимум: " + max);
         start();
     }
-    public static boolean checkBalance(int[] mas){
-        int sumL=0;
-        int sumR=Arrays.stream(mas).sum();
-        for (int i=0; i<mas.length; i++)
-        {
-            if(sumL==sumR)
-            {
+
+    public static boolean checkBalance(int[] mas) {
+        int sumL = 0;
+        int sumR = Arrays.stream(mas).sum();
+        for (int i = 0; i < mas.length; i++) {
+            if (sumL == sumR) {
                 return true;
             }
-            sumR-=mas[i];
-            sumL+=mas[i];
+            sumR -= mas[i];
+            sumL += mas[i];
         }
         return false;
     }
-    public static int[] shift(int[] mass, int n){
-        if (n>0){
-            for (int i= 0; i< n; i++)
-            {
-               int le=mass[mass.length-1];
-               for (int j= mass.length-1;j>0;j--)
-               {
-                   mass[j]=mass[j-1];
-               }
-               mass[0]=le;
-            }
-        } else if (n<0) {
-            for (int i= 0; i>n; i--)
-            {
-                int fe=mass[0];
-                for (int j= 0;j<mass.length-1;j++)
-                {
-                    mass[j]=mass[j+1];
-                }
-                mass[mass.length-1]=fe;
-            }
+
+    public static void shift(int[] mas, int n) {
+        int length = mas.length;
+
+        if (n < 0) {
+            n = length + n;
         }
-        return mass;
+
+        reverse(mas, 0, length - 1);
+        reverse(mas, 0, n - 1);
+        reverse(mas, n, length - 1);
+    }
+
+    private static void reverse(int[] arr, int start, int end) {
+        while (start < end) {
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;
+        }
     }
 }
